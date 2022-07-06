@@ -13,7 +13,7 @@ namespace monke
 {
     public partial class FormClasses : Form
     {
-        
+        //tescik
         //dodac automatyczne awansowanie klasy do kolejnego roku, przy 9 klasie automatycznie archiwizowac
         
         static string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database.mdf;Integrated Security=True";      
