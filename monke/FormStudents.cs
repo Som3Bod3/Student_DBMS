@@ -14,13 +14,11 @@ namespace monke
 {
     public partial class FormStudents : Form
     {
-        //ograniczenie pol tekstowych co do znakow(optional)
-        //oddzielne sprawdzenie poprawnosci PESEL
-        //zrobienie archiwizacji (dodanie kolumny bool) (mozliwosc wyswietlenia uczniow zarchiwizowanych nie lub all) (automatycznie archiwizuje albo nie)
         
-        //mozliwosc awansu calej klasy do nowej
-        //mozliwosc archiwizacji calej klasy
-        //zrobienie awansowania pojedynczych uczniow do kolejnych klas
+        //restrict field sign input (optional feature)
+        //check PESEL number CRC (optional feature)
+
+        //sql connection string
         static string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database.mdf;Integrated Security=True";
         string field = "last_name";
         int id;
@@ -28,7 +26,7 @@ namespace monke
 
         public FormStudents()
         {
-            InitializeComponent();                
+            InitializeComponent();
         }
 
         //Displays data in DataGrid widget, also is reliable for searching through data for specific keywords
@@ -37,6 +35,10 @@ namespace monke
         {
             loadDataGrid();
         }
+        
+        /// <summary>
+        /// Collect student data from db and fill ds dataset 
+        /// </summary>
         private void loadDataGrid() {
             var select = 
                 "SELECT " +
@@ -72,13 +74,20 @@ namespace monke
                 dataGridViewStudents.Columns[21].HeaderText = "Archiwum";
             }
         }
+        
+        /// <summary>
+        /// Calls a function based on users input
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dataGridViewStudents_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var senderGrid = (DataGridView)sender;
-
+            //check if correct row was clicked
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
                 e.RowIndex >= 0)
             {
+                //check which column was clicked
                 if (e.ColumnIndex == 0)
                 {
                     id = int.Parse(senderGrid.Rows[e.RowIndex].Cells[4].Value.ToString());
@@ -89,15 +98,26 @@ namespace monke
                     deleteStudentById(senderGrid.Rows[e.RowIndex].Cells[4].Value.ToString());
                 }
                 else if (e.ColumnIndex == 1) {
-                    MessageBox.Show("Awans");
+                    id = int.Parse(senderGrid.Rows[e.RowIndex].Cells[4].Value.ToString());
+                    panelPromoteStudent();
+                    
                 }
                 else if (e.ColumnIndex == 2) {
-                    MessageBox.Show("Arch");
+                    id = int.Parse(senderGrid.Rows[e.RowIndex].Cells[4].Value.ToString());
+                    panelArchiveStudent();
+                    
                 }
             }
         }
+        
+        /// <summary>
+        /// Collect student data based on user search input 
+        /// </summary>
         private void reSearch()
         {
+            DataRowView drv = (DataRowView)comboArchive.SelectedItem;
+            string fkof = drv["value"].ToString();
+            //select query
             var select =
                 "SELECT " +
                     "k.Id, k.name, k.last_name, k.pesel, k.birth, k.gender,  CONCAT(c.classN, c.classL, c.year , '/', c.year+1) AS class, k.height, k.weight, k.bmi, k.pressure, k.eye, k.posture, k.posture_type, k.sees_colour, k.cover_test, k.light_reflect, k.archive " +
@@ -106,7 +126,8 @@ namespace monke
                 "LEFT JOIN " +
                     "Classes AS c " +
                 "ON (k.class_id = c.Id) " +
-                    "WHERE k." + field + " LIKE '" + tbxSearch.Text + "%'";
+                    $"WHERE {fkof} AND k." + field + " LIKE '" + tbxSearch.Text + "%'";
+            //Fill dataset
             using (var con = new SqlConnection(connectionString))
             {
                 var dataAdapter = new SqlDataAdapter(select, con);
@@ -148,12 +169,14 @@ namespace monke
 
         //Displays a form and is responsible for succesfully adding a student to DB
         #region panelAddStudent
+        //event open form
         private void btnAddStudent_Click(object sender, EventArgs e)
         {
             panelAddStudent.Enabled = true;
             panelAddStudent.Visible = true;
             populateComboBoxes(false);           
         }
+        //event close form
         private void btnASBack_Click(object sender, EventArgs e)
         {
             panelAddStudent.Enabled = false;
@@ -161,13 +184,20 @@ namespace monke
             reSearch();
             panelAddStudent.Controls.ClearControls();
         }
+        
+        /// <summary>
+        /// Collects input data and adds a new record to db
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnConfirmAddStudent_Click(object sender, EventArgs e)
         {
-            
             using (SqlConnection con = new SqlConnection(connectionString))
             {
+                //check if required fields have been filled out
                 if (inputName.Text != "" && inputLastName.Text != "" && inputPESEL.Text != "" && inputGender.SelectedValue.ToString() != "" && inputPESEL.Text.Length == 11)
                 {
+                    //format inputs in a way suitable for an insert query
                     string[][] input = new string[][]
                     {
                         new string[]{ "'" + inputName.Text+"',", "name," },
@@ -187,8 +217,6 @@ namespace monke
                         new string[]{ ",'" + inputCoverTest.SelectedValue.ToString() + "'", ",cover_test" },
                         new string[]{ ",'" + inputLightReflect.SelectedValue.ToString() + "'", ",light_reflect" }
                     };
-
-                    
                     for (int i = 0; i < 16; i++) {
                         if (input[i][0] == "''," || input[i][0] == ",''")
                         {
@@ -197,20 +225,26 @@ namespace monke
                         }
                     }
 
+                    //run insert query
                     con.Open();
                     SqlCommand cmd = new SqlCommand("", con);
                     cmd.CommandText = $"INSERT INTO kids({input[0][1]}{input[1][1]}{input[2][1]}{input[3][1]}{input[4][1]}{input[5][1]}{input[6][1]}{input[7][1]}{input[8][1]}{input[9][1]}{input[10][1]}{input[11][1]}{input[12][1]}{input[13][1]}{input[14][1]}{input[15][1]}) VALUES({input[0][0]}{input[1][0]}{input[2][0]}{input[3][0]}{input[4][0]}{input[5][0]}{input[6][0]}{input[7][0]}{input[8][0]}{input[9][0]}{input[10][0]}{input[11][0]}{input[12][0]}{input[13][0]}{input[14][0]}{input[15][0]});";
-                    
-                    
                     MessageBox.Show(cmd.CommandText);
                     MessageBox.Show("Rows affected: " + cmd.ExecuteNonQuery().ToString());                    
                 }
                 else {
+                    //required fields empty alert
                     MessageBox.Show("uzupelnij wszystkie wymagane * pola");                    
                 }
                
             }
         }
+        
+        /// <summary>
+        /// Shows posture type input fields if posture isnt correct
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void inputPosture_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (inputPosture.SelectedValue.ToString() == "N")
@@ -222,19 +256,30 @@ namespace monke
                 inputPostureType.Visible = false;
             }
         }
+        
+        /// <summary>
+        /// Function fills comboboxes in add/edit panel form with values and displaymembers.
+        /// </summary>
+        /// <param name="edit">If true, combobox will have a correct value selected</param>
         private void populateComboBoxes(bool edit) {
             if (edit)
             {
                 inputBirthE.CustomFormat = "yyyy-MM-dd";
                 inputBirthE.Format = DateTimePickerFormat.Custom;
 
+                //create datatable
                 DataTable dtGender = new DataTable();
+                //declare columns
                 dtGender.Columns.AddRange(new DataColumn[] { new DataColumn("value", typeof(string)), new DataColumn("name", typeof(string)) });
+                //add rows 
                 dtGender.Rows.Add("", "-wybierz-");
                 dtGender.Rows.Add("K", "Kobieta(K)");
                 dtGender.Rows.Add("M", "Mężczyzna(M)");
+                //set data input for combo boxes
                 inputGenderE.DataSource = dtGender;
+                //set displaymember value
                 inputGenderE.DisplayMember = "name";
+                //set value value
                 inputGenderE.ValueMember = "value";
 
                 DataTable dtEye = new DataTable();
@@ -402,6 +447,8 @@ namespace monke
                 inputLightReflect.ValueMember = "value";
             }            
         }
+
+        #region events
         private void inputBirth_ValueChanged(object sender, EventArgs e)
         {
             //MessageBox.Show(inputBirth.Value.Date.ToString());
@@ -414,10 +461,17 @@ namespace monke
         {
             calculateBMI();
         }
+        #endregion
+
+        /// <summary>
+        /// Calculates BMI value
+        /// </summary>
         private void calculateBMI()
         {
+            //check if required values have been filled
             if (inputHeight.Text != "" && inputWeight.Text != "")
             {
+                //calculate bmi
                 inputBMI.Text = string.Format("{0:N2}", double.Parse(inputWeight.Text) / Math.Pow(double.Parse(inputHeight.Text) / 100, 2.0D));
                 string old = inputBMI.Text;
                 string neww = old.Replace(',', '.');
@@ -426,12 +480,19 @@ namespace monke
         }
         #endregion
 
+        /// <summary>
+        /// Deletes student based on row id selected by user
+        /// </summary>
+        /// <param name="id"></param>
         private void deleteStudentById(string id) {
+            //Confirm delete student
             DialogResult dialogResult = MessageBox.Show("Czy na pewno chcesz trwale usunąć ucznia o ID = " + id + "?", "Potwierdź usunięcie", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes) {
+                //delete query
                 var delete = "DELETE FROM kids WHERE Id = '" + int.Parse(id) + "';";
                 using (var con = new SqlConnection(connectionString))
                 {
+                    //run query
                     con.Open();
                     SqlCommand cmd = new SqlCommand(delete, con);
                     cmd.ExecuteNonQuery();
@@ -441,7 +502,10 @@ namespace monke
             }
         }
 
+
+        //Displays edit student form and edits data record in db
         #region editStudent
+        //self explanatory
         private void panelEditStudentOpen(string id)
         {
             panelEditStudent.Enabled = true;
@@ -457,12 +521,20 @@ namespace monke
             reSearch();
             panelEditStudent.Controls.ClearControls();
         }
+        
+        /// <summary>
+        /// Runs update query from user input
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnConfirmEditStudent_Click(object sender, EventArgs e)
         {
             using (SqlConnection con = new SqlConnection(connectionString))
             {
+                //check if required values are filled
                 if (inputNameE.Text != "" && inputLastNameE.Text != "" && inputPESELE.Text != "" && inputGenderE.SelectedValue.ToString() != "" && inputPESELE.Text.Length == 11)
                 {
+                    //format values for update query
                     string[] input = 
                     {
                         "name = '" + inputNameE.Text + "',",
@@ -483,15 +555,16 @@ namespace monke
                         ", light_reflect = '" + inputLightReflectE.SelectedValue.ToString() + "'"
                     };
 
-                    
                     for (int i = 0; i < 16; i++)
                     {
+                        //clear formatted input if empty
                         if (Regex.IsMatch(input[i], @"[a-zA-Z_]+\s=\s'',") || Regex.IsMatch(input[i], @",\s[a-zA-Z_]+\s=\s''") || Regex.IsMatch(input[i], @"[a-zA-Z_]+\s=\s''"))
                         {
                             input[i] = "";
                         }
                     }
 
+                    //run query
                     con.Open();
                     SqlCommand cmd = new SqlCommand("", con);
                     cmd.CommandText = $"UPDATE kids SET {input[0]}{input[1]}{input[2]}{input[3]}{input[4]}{input[5]}{input[6]}{input[7]}{input[8]}{input[9]}{input[10]}{input[11]}{input[12]}{input[13]}{input[14]}{input[15]} WHERE Id = '{id}';";
@@ -505,11 +578,15 @@ namespace monke
                 }
             }
         }
+        
+        /// <summary>
+        /// Fills input fields with correct student info from db
+        /// </summary>
+        /// <param name="id"></param>
         private void fillStudentInfo(string id) {
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-              
-
+                //collect data and fill input fields
                 con.Open();
                 SqlCommand cmd = new SqlCommand($"SELECT * FROM kids WHERE Id = '{id}';", con);
                 SqlDataReader dr = cmd.ExecuteReader();
@@ -533,9 +610,9 @@ namespace monke
 
                 MessageBox.Show(cmd.CommandText);
                 dr.Close();
-               
             }
         }
+        
         private void calculateBMIE()
         {
             if (inputHeightE.Text != "" && inputWeightE.Text != "")
@@ -555,8 +632,133 @@ namespace monke
             calculateBMIE();
         }
         #endregion
+
+
+        /// <summary>
+        /// Promotes selected student to next class 
+        /// </summary>
+        private void panelPromoteStudent() {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                var update = "";
+                //confirms tudent promotion
+                DialogResult dialogResult2 = MessageBox.Show("Czy chcesz awansować tego ucznia?", "Potwierdź awans.", MessageBoxButtons.YesNo);
+                if (dialogResult2 == DialogResult.Yes)
+                {
+                    //get class id of student
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("", con);
+                    cmd.CommandText = $"SELECT * FROM Kids WHERE Id = '{id}';";
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    dr.Read();
+                    var classID = int.Parse(dr["class_id"].ToString());
+                    dr.Close();
+                    //get class info 
+                    cmd.CommandText = $"SELECT * FROM Classes WHERE Id = '{classID}';";
+                    dr = cmd.ExecuteReader();
+                    dr.Read();
+                    var classN = int.Parse(dr["classN"].ToString());
+                    var year = int.Parse(dr["year"].ToString());
+                    dr.Close();
+                    //check if a suitable class for promotion exists
+                    cmd.CommandText = $"SELECT * FROM Classes WHERE classN = '{classN+1}' AND year = '{year+1}';";
+                    if (cmd.ExecuteScalar() != null)
+                    {
+                        //if such class exists, promote student
+                        dr = cmd.ExecuteReader();
+                        dr.Read();
+                        classID = int.Parse(dr["Id"].ToString());
+                        dr.Close();
+                        cmd.CommandText = $"UPDATE Kids SET class_id = '{classID}' WHERE Id = {id};";
+                        MessageBox.Show(cmd.CommandText);
+                        MessageBox.Show("Rows affected: " + cmd.ExecuteNonQuery().ToString());
+                        reSearch();
+                    }
+                    else
+                    {
+                        //alert, cant promot because class doesnt exist
+                        MessageBox.Show("Nie można awansowac ucznia ponieważ taka klasa nie istnieje");
+                    }
+                }
+                else
+                {
+                    return;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Toggles archive property of student selected
+        /// </summary>
+        private void panelArchiveStudent() {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            { 
+                //get student info and check archive status
+                con.Open();
+                SqlCommand cmd = new SqlCommand("", con);
+                cmd.CommandText = $"SELECT * FROM Kids WHERE Id = '{id}'";
+                var update = "";
+                SqlDataReader dr = cmd.ExecuteReader();
+                dr.Read();
+                if (dr["archive"].ToString() == "False")
+                {
+                    //ask for confirmation
+                    DialogResult dialogResult2 = MessageBox.Show("Czy chcesz archiwizować tego ucznia?", "Potwierdź archiwizacje.", MessageBoxButtons.YesNo);
+                    if (dialogResult2 == DialogResult.Yes)
+                    {
+                        update = $"UPDATE Kids SET archive = '1' WHERE Id = '{id}';";                       
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+                else if (dr["archive"].ToString() == "True")
+                {
+                    //ask for confirmation
+                    DialogResult dialogResult2 = MessageBox.Show("Czy chcesz cofnąć archiwizacje tego ucznia?", "Potwierdź archiwizacje.", MessageBoxButtons.YesNo);
+                    if (dialogResult2 == DialogResult.Yes)
+                    {
+                        update = $"UPDATE Kids SET archive = '0' WHERE Id = '{id}';";
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+                dr.Close();
+                //run update archive query
+                cmd.CommandText = update;
+                MessageBox.Show(update);
+                MessageBox.Show(cmd.ExecuteNonQuery().ToString());
+                reSearch();
+                
+            }
+        }
+
+        private void comboArchive_SelectedValueChanged(object sender, EventArgs e)
+        {
+            reSearch();
+        }
+
+        //fill combobox fields
+        private void FormStudents_Shown(object sender, EventArgs e)
+        {
+            DataTable dtArchive = new DataTable();
+            dtArchive.Columns.AddRange(new DataColumn[] { new DataColumn("value", typeof(string)), new DataColumn("name", typeof(string)) });
+            dtArchive.Rows.Add("k.archive = '0'", "Bez zarchiwizowanych");
+            dtArchive.Rows.Add("k.archive = '1'", "Tylko zarchiwizowane");
+            dtArchive.Rows.Add("k.archive = '0' OR k.archive = '1'", "Wszystkie");
+            comboArchive.DataSource = dtArchive;
+            comboArchive.DisplayMember = "name";
+            comboArchive.ValueMember = "value";
+            comboArchive.SelectedValue = "k.archive = '0'";
+        }
     }
 
+    /// <summary>
+    /// class responsible for clearing all fields in panel
+    /// </summary>
     public static class extenstions
     {
         private static Dictionary<Type, Action<Control>> controldefaults = new Dictionary<Type, Action<Control>>() {

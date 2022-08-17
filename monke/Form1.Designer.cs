@@ -34,10 +34,9 @@
             this.btnListaKlasowa = new System.Windows.Forms.Button();
             this.btnKartaBadania = new System.Windows.Forms.Button();
             this.btnForms = new System.Windows.Forms.Button();
-            this.btnStudents = new System.Windows.Forms.Button();
-            this.panelLogo = new System.Windows.Forms.Panel();
-            this.panelChildForm = new System.Windows.Forms.Panel();
             this.btnClasses = new System.Windows.Forms.Button();
+            this.btnStudents = new System.Windows.Forms.Button();
+            this.panelChildForm = new System.Windows.Forms.Panel();
             this.panelSideMenu.SuspendLayout();
             this.subMenuForms.SuspendLayout();
             this.SuspendLayout();
@@ -51,11 +50,10 @@
             this.panelSideMenu.Controls.Add(this.btnForms);
             this.panelSideMenu.Controls.Add(this.btnClasses);
             this.panelSideMenu.Controls.Add(this.btnStudents);
-            this.panelSideMenu.Controls.Add(this.panelLogo);
             this.panelSideMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelSideMenu.Location = new System.Drawing.Point(0, 0);
             this.panelSideMenu.Name = "panelSideMenu";
-            this.panelSideMenu.Size = new System.Drawing.Size(185, 611);
+            this.panelSideMenu.Size = new System.Drawing.Size(185, 761);
             this.panelSideMenu.TabIndex = 0;
             // 
             // btnHelp
@@ -67,7 +65,7 @@
             this.btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnHelp.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnHelp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(247)))), ((int)(((byte)(255)))));
-            this.btnHelp.Location = new System.Drawing.Point(0, 339);
+            this.btnHelp.Location = new System.Drawing.Point(0, 219);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnHelp.Size = new System.Drawing.Size(185, 45);
@@ -82,7 +80,7 @@
             this.subMenuForms.Controls.Add(this.btnListaKlasowa);
             this.subMenuForms.Controls.Add(this.btnKartaBadania);
             this.subMenuForms.Dock = System.Windows.Forms.DockStyle.Top;
-            this.subMenuForms.Location = new System.Drawing.Point(0, 255);
+            this.subMenuForms.Location = new System.Drawing.Point(0, 135);
             this.subMenuForms.Name = "subMenuForms";
             this.subMenuForms.Size = new System.Drawing.Size(185, 84);
             this.subMenuForms.TabIndex = 3;
@@ -132,7 +130,7 @@
             this.btnForms.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnForms.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnForms.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(247)))), ((int)(((byte)(255)))));
-            this.btnForms.Location = new System.Drawing.Point(0, 210);
+            this.btnForms.Location = new System.Drawing.Point(0, 90);
             this.btnForms.Name = "btnForms";
             this.btnForms.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnForms.Size = new System.Drawing.Size(185, 45);
@@ -141,42 +139,6 @@
             this.btnForms.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnForms.UseVisualStyleBackColor = true;
             this.btnForms.Click += new System.EventHandler(this.btnForms_Click);
-            // 
-            // btnStudents
-            // 
-            this.btnStudents.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnStudents.FlatAppearance.BorderSize = 0;
-            this.btnStudents.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(60)))), ((int)(((byte)(40)))));
-            this.btnStudents.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(35)))), ((int)(((byte)(25)))));
-            this.btnStudents.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStudents.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnStudents.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(247)))), ((int)(((byte)(255)))));
-            this.btnStudents.Location = new System.Drawing.Point(0, 120);
-            this.btnStudents.Name = "btnStudents";
-            this.btnStudents.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.btnStudents.Size = new System.Drawing.Size(185, 45);
-            this.btnStudents.TabIndex = 1;
-            this.btnStudents.Text = "Uczniowie";
-            this.btnStudents.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnStudents.UseVisualStyleBackColor = true;
-            this.btnStudents.Click += new System.EventHandler(this.btnStudents_Click);
-            // 
-            // panelLogo
-            // 
-            this.panelLogo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelLogo.Location = new System.Drawing.Point(0, 0);
-            this.panelLogo.Name = "panelLogo";
-            this.panelLogo.Size = new System.Drawing.Size(185, 120);
-            this.panelLogo.TabIndex = 0;
-            // 
-            // panelChildForm
-            // 
-            this.panelChildForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(69)))), ((int)(((byte)(58)))));
-            this.panelChildForm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelChildForm.Location = new System.Drawing.Point(185, 0);
-            this.panelChildForm.Name = "panelChildForm";
-            this.panelChildForm.Size = new System.Drawing.Size(849, 611);
-            this.panelChildForm.TabIndex = 1;
             // 
             // btnClasses
             // 
@@ -187,7 +149,7 @@
             this.btnClasses.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClasses.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnClasses.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(247)))), ((int)(((byte)(255)))));
-            this.btnClasses.Location = new System.Drawing.Point(0, 165);
+            this.btnClasses.Location = new System.Drawing.Point(0, 45);
             this.btnClasses.Name = "btnClasses";
             this.btnClasses.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.btnClasses.Size = new System.Drawing.Size(185, 45);
@@ -197,16 +159,44 @@
             this.btnClasses.UseVisualStyleBackColor = true;
             this.btnClasses.Click += new System.EventHandler(this.btnClasses_Click);
             // 
+            // btnStudents
+            // 
+            this.btnStudents.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnStudents.FlatAppearance.BorderSize = 0;
+            this.btnStudents.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(60)))), ((int)(((byte)(40)))));
+            this.btnStudents.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(35)))), ((int)(((byte)(25)))));
+            this.btnStudents.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStudents.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnStudents.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(247)))), ((int)(((byte)(255)))));
+            this.btnStudents.Location = new System.Drawing.Point(0, 0);
+            this.btnStudents.Name = "btnStudents";
+            this.btnStudents.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.btnStudents.Size = new System.Drawing.Size(185, 45);
+            this.btnStudents.TabIndex = 1;
+            this.btnStudents.Text = "Uczniowie";
+            this.btnStudents.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStudents.UseVisualStyleBackColor = true;
+            this.btnStudents.Click += new System.EventHandler(this.btnStudents_Click);
+            // 
+            // panelChildForm
+            // 
+            this.panelChildForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(69)))), ((int)(((byte)(58)))));
+            this.panelChildForm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelChildForm.Location = new System.Drawing.Point(185, 0);
+            this.panelChildForm.Name = "panelChildForm";
+            this.panelChildForm.Size = new System.Drawing.Size(1079, 761);
+            this.panelChildForm.TabIndex = 1;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1034, 611);
+            this.ClientSize = new System.Drawing.Size(1264, 761);
             this.Controls.Add(this.panelChildForm);
             this.Controls.Add(this.panelSideMenu);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.MinimumSize = new System.Drawing.Size(1050, 650);
+            this.MinimumSize = new System.Drawing.Size(1280, 800);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
@@ -224,7 +214,6 @@
         private System.Windows.Forms.Button btnKartaBadania;
         private System.Windows.Forms.Button btnForms;
         private System.Windows.Forms.Button btnStudents;
-        private System.Windows.Forms.Panel panelLogo;
         private System.Windows.Forms.Button btnHelp;
         private System.Windows.Forms.Panel panelChildForm;
         private System.Windows.Forms.Button btnClasses;

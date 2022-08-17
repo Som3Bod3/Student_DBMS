@@ -15,26 +15,25 @@ namespace monke
 {
     public partial class Form1 : Form
     {
+        //variable for currently open child Form
+        private Form openForm = null;
         public Form1()
         {
             InitializeComponent();
             hideSubMenu();
-          
-          /*  string docPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + @"/monke/test.docx";
-            string templatePath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + @"/monke/document1.docx";
-            DocX obj = DocX.Create(docPath);
-            obj.ApplyTemplate(templatePath);
-            obj.ReplaceText("<name>", "Chazbijewicz Ahmed");
-            obj.Save();
-            MessageBox.Show("done");*/
-
-            
         }
 
+        /// <summary>
+        /// hides sibmenu elements
+        /// </summary>
         private void hideSubMenu() {
             subMenuForms.Visible = false;
         }
 
+        /// <summary>
+        /// toggles submeny visibility
+        /// </summary>
+        /// <param name="subMenu"></param>
         private void showSubMenu(Panel subMenu) {
             if (subMenu.Visible == false)
             {
@@ -45,12 +44,19 @@ namespace monke
                 subMenu.Visible = false;
             }
         }
-        private Form openForm = null;
+        
+        /// <summary>
+        /// opens child form corresponding to pressed button
+        /// </summary>
+        /// <param name="childForm"></param>
         private void openChildForm(Form childForm) {
+            //close current child form
             if (openForm != null) { 
                 openForm.Close();
             }
+            //assing new form
             openForm = childForm;
+            //set properties
             childForm.TopLevel = false;
             childForm.FormBorderStyle = FormBorderStyle.None;
             childForm.Dock = DockStyle.Fill;
@@ -60,6 +66,7 @@ namespace monke
             childForm.Show();
         }
 
+        //events for each for buttons on the panel
         #region Students
         private void btnStudents_Click(object sender, EventArgs e)
         {

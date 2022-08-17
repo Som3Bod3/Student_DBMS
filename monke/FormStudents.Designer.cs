@@ -41,6 +41,7 @@
             this.kidsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.panelDataGrid = new System.Windows.Forms.Panel();
             this.panelNav = new System.Windows.Forms.Panel();
+            this.comboArchive = new System.Windows.Forms.ComboBox();
             this.btnAddStudent = new System.Windows.Forms.Button();
             this.checkBoxPESEL = new System.Windows.Forms.CheckBox();
             this.checkBoxImie = new System.Windows.Forms.CheckBox();
@@ -48,6 +49,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tbxSearch = new System.Windows.Forms.TextBox();
             this.panelAddStudent = new System.Windows.Forms.Panel();
+            this.inputClassB = new System.Windows.Forms.ComboBox();
             this.btnConfirmAddStudent = new System.Windows.Forms.Button();
             this.inputLightReflect = new System.Windows.Forms.ComboBox();
             this.inputCoverTest = new System.Windows.Forms.ComboBox();
@@ -59,7 +61,6 @@
             this.inputBMI = new System.Windows.Forms.TextBox();
             this.inputWeight = new System.Windows.Forms.TextBox();
             this.inputHeight = new System.Windows.Forms.TextBox();
-            this.inputClass = new System.Windows.Forms.TextBox();
             this.inputGender = new System.Windows.Forms.ComboBox();
             this.inputBirth = new System.Windows.Forms.DateTimePicker();
             this.inputPESEL = new System.Windows.Forms.TextBox();
@@ -93,7 +94,6 @@
             this.inputBMIE = new System.Windows.Forms.TextBox();
             this.inputWeightE = new System.Windows.Forms.TextBox();
             this.inputHeightE = new System.Windows.Forms.TextBox();
-            this.inputClassE = new System.Windows.Forms.TextBox();
             this.inputGenderE = new System.Windows.Forms.ComboBox();
             this.inputClassBE = new System.Windows.Forms.ComboBox();
             this.inputBirthE = new System.Windows.Forms.DateTimePicker();
@@ -116,7 +116,6 @@
             this.label30 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.btnESBack = new System.Windows.Forms.Button();
-            this.inputClassB = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewStudents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kidsDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kidsDataSetBindingSource)).BeginInit();
@@ -144,7 +143,7 @@
             this.dataGridViewStudents.Name = "dataGridViewStudents";
             this.dataGridViewStudents.ReadOnly = true;
             this.dataGridViewStudents.RowTemplate.Height = 30;
-            this.dataGridViewStudents.Size = new System.Drawing.Size(1050, 553);
+            this.dataGridViewStudents.Size = new System.Drawing.Size(1063, 625);
             this.dataGridViewStudents.TabIndex = 1;
             this.dataGridViewStudents.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewStudents_CellContentClick);
             // 
@@ -216,17 +215,19 @@
             // 
             // panelDataGrid
             // 
+            this.panelDataGrid.AutoScroll = true;
             this.panelDataGrid.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panelDataGrid.Controls.Add(this.dataGridViewStudents);
             this.panelDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDataGrid.Location = new System.Drawing.Point(0, 97);
             this.panelDataGrid.Name = "panelDataGrid";
-            this.panelDataGrid.Size = new System.Drawing.Size(1050, 553);
+            this.panelDataGrid.Size = new System.Drawing.Size(1063, 625);
             this.panelDataGrid.TabIndex = 3;
             // 
             // panelNav
             // 
             this.panelNav.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(69)))), ((int)(((byte)(58)))));
+            this.panelNav.Controls.Add(this.comboArchive);
             this.panelNav.Controls.Add(this.btnAddStudent);
             this.panelNav.Controls.Add(this.checkBoxPESEL);
             this.panelNav.Controls.Add(this.checkBoxImie);
@@ -236,8 +237,18 @@
             this.panelNav.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelNav.Location = new System.Drawing.Point(0, 0);
             this.panelNav.Name = "panelNav";
-            this.panelNav.Size = new System.Drawing.Size(1050, 97);
+            this.panelNav.Size = new System.Drawing.Size(1063, 97);
             this.panelNav.TabIndex = 4;
+            // 
+            // comboArchive
+            // 
+            this.comboArchive.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboArchive.FormattingEnabled = true;
+            this.comboArchive.Location = new System.Drawing.Point(169, 9);
+            this.comboArchive.Name = "comboArchive";
+            this.comboArchive.Size = new System.Drawing.Size(121, 21);
+            this.comboArchive.TabIndex = 35;
+            this.comboArchive.SelectedValueChanged += new System.EventHandler(this.comboArchive_SelectedValueChanged);
             // 
             // btnAddStudent
             // 
@@ -246,9 +257,9 @@
             this.btnAddStudent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.btnAddStudent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(247)))), ((int)(((byte)(255)))));
-            this.btnAddStudent.Location = new System.Drawing.Point(259, 29);
+            this.btnAddStudent.Location = new System.Drawing.Point(305, 9);
             this.btnAddStudent.Name = "btnAddStudent";
-            this.btnAddStudent.Size = new System.Drawing.Size(134, 45);
+            this.btnAddStudent.Size = new System.Drawing.Size(145, 55);
             this.btnAddStudent.TabIndex = 8;
             this.btnAddStudent.Text = "Dodaj ucznia";
             this.btnAddStudent.UseVisualStyleBackColor = false;
@@ -311,7 +322,7 @@
             this.tbxSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.tbxSearch.Location = new System.Drawing.Point(12, 41);
             this.tbxSearch.Name = "tbxSearch";
-            this.tbxSearch.Size = new System.Drawing.Size(214, 23);
+            this.tbxSearch.Size = new System.Drawing.Size(278, 23);
             this.tbxSearch.TabIndex = 3;
             this.tbxSearch.TextChanged += new System.EventHandler(this.tbxSearch_TextChanged);
             // 
@@ -331,7 +342,6 @@
             this.panelAddStudent.Controls.Add(this.inputBMI);
             this.panelAddStudent.Controls.Add(this.inputWeight);
             this.panelAddStudent.Controls.Add(this.inputHeight);
-            this.panelAddStudent.Controls.Add(this.inputClass);
             this.panelAddStudent.Controls.Add(this.inputGender);
             this.panelAddStudent.Controls.Add(this.inputBirth);
             this.panelAddStudent.Controls.Add(this.inputPESEL);
@@ -357,13 +367,23 @@
             this.panelAddStudent.Enabled = false;
             this.panelAddStudent.Location = new System.Drawing.Point(0, 97);
             this.panelAddStudent.Name = "panelAddStudent";
-            this.panelAddStudent.Size = new System.Drawing.Size(1050, 553);
+            this.panelAddStudent.Size = new System.Drawing.Size(1063, 625);
             this.panelAddStudent.TabIndex = 2;
             this.panelAddStudent.Visible = false;
             // 
+            // inputClassB
+            // 
+            this.inputClassB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.inputClassB.FormattingEnabled = true;
+            this.inputClassB.Location = new System.Drawing.Point(80, 137);
+            this.inputClassB.Name = "inputClassB";
+            this.inputClassB.Size = new System.Drawing.Size(143, 21);
+            this.inputClassB.TabIndex = 34;
+            // 
             // btnConfirmAddStudent
             // 
-            this.btnConfirmAddStudent.Location = new System.Drawing.Point(449, 353);
+            this.btnConfirmAddStudent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnConfirmAddStudent.Location = new System.Drawing.Point(905, 537);
             this.btnConfirmAddStudent.Name = "btnConfirmAddStudent";
             this.btnConfirmAddStudent.Size = new System.Drawing.Size(146, 76);
             this.btnConfirmAddStudent.TabIndex = 32;
@@ -375,45 +395,45 @@
             // 
             this.inputLightReflect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.inputLightReflect.FormattingEnabled = true;
-            this.inputLightReflect.Location = new System.Drawing.Point(201, 416);
+            this.inputLightReflect.Location = new System.Drawing.Point(206, 381);
             this.inputLightReflect.Name = "inputLightReflect";
-            this.inputLightReflect.Size = new System.Drawing.Size(121, 21);
+            this.inputLightReflect.Size = new System.Drawing.Size(127, 21);
             this.inputLightReflect.TabIndex = 31;
             // 
             // inputCoverTest
             // 
             this.inputCoverTest.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.inputCoverTest.FormattingEnabled = true;
-            this.inputCoverTest.Location = new System.Drawing.Point(105, 384);
+            this.inputCoverTest.Location = new System.Drawing.Point(94, 352);
             this.inputCoverTest.Name = "inputCoverTest";
-            this.inputCoverTest.Size = new System.Drawing.Size(121, 21);
+            this.inputCoverTest.Size = new System.Drawing.Size(143, 21);
             this.inputCoverTest.TabIndex = 30;
             // 
             // inputSeesColour
             // 
             this.inputSeesColour.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.inputSeesColour.FormattingEnabled = true;
-            this.inputSeesColour.Location = new System.Drawing.Point(118, 353);
+            this.inputSeesColour.Location = new System.Drawing.Point(100, 324);
             this.inputSeesColour.Name = "inputSeesColour";
-            this.inputSeesColour.Size = new System.Drawing.Size(121, 21);
+            this.inputSeesColour.Size = new System.Drawing.Size(143, 21);
             this.inputSeesColour.TabIndex = 29;
             // 
             // inputPostureType
             // 
             this.inputPostureType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.inputPostureType.FormattingEnabled = true;
-            this.inputPostureType.Location = new System.Drawing.Point(229, 325);
+            this.inputPostureType.Location = new System.Drawing.Point(229, 298);
             this.inputPostureType.Name = "inputPostureType";
-            this.inputPostureType.Size = new System.Drawing.Size(121, 21);
+            this.inputPostureType.Size = new System.Drawing.Size(143, 21);
             this.inputPostureType.TabIndex = 28;
             // 
             // inputPosture
             // 
             this.inputPosture.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.inputPosture.FormattingEnabled = true;
-            this.inputPosture.Location = new System.Drawing.Point(102, 325);
+            this.inputPosture.Location = new System.Drawing.Point(80, 298);
             this.inputPosture.Name = "inputPosture";
-            this.inputPosture.Size = new System.Drawing.Size(121, 21);
+            this.inputPosture.Size = new System.Drawing.Size(143, 21);
             this.inputPosture.TabIndex = 27;
             this.inputPosture.SelectedIndexChanged += new System.EventHandler(this.inputPosture_SelectedIndexChanged);
             // 
@@ -421,47 +441,40 @@
             // 
             this.inputEye.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.inputEye.FormattingEnabled = true;
-            this.inputEye.Location = new System.Drawing.Point(86, 298);
+            this.inputEye.Location = new System.Drawing.Point(80, 270);
             this.inputEye.Name = "inputEye";
-            this.inputEye.Size = new System.Drawing.Size(121, 21);
+            this.inputEye.Size = new System.Drawing.Size(143, 21);
             this.inputEye.TabIndex = 26;
             // 
             // inputPressure
             // 
-            this.inputPressure.Location = new System.Drawing.Point(103, 270);
+            this.inputPressure.Location = new System.Drawing.Point(80, 246);
             this.inputPressure.Name = "inputPressure";
-            this.inputPressure.Size = new System.Drawing.Size(100, 20);
+            this.inputPressure.Size = new System.Drawing.Size(143, 20);
             this.inputPressure.TabIndex = 25;
             // 
             // inputBMI
             // 
-            this.inputBMI.Location = new System.Drawing.Point(80, 246);
+            this.inputBMI.Location = new System.Drawing.Point(80, 217);
             this.inputBMI.Name = "inputBMI";
-            this.inputBMI.Size = new System.Drawing.Size(100, 20);
+            this.inputBMI.Size = new System.Drawing.Size(143, 20);
             this.inputBMI.TabIndex = 24;
             // 
             // inputWeight
             // 
-            this.inputWeight.Location = new System.Drawing.Point(90, 218);
+            this.inputWeight.Location = new System.Drawing.Point(80, 189);
             this.inputWeight.Name = "inputWeight";
-            this.inputWeight.Size = new System.Drawing.Size(100, 20);
+            this.inputWeight.Size = new System.Drawing.Size(143, 20);
             this.inputWeight.TabIndex = 23;
             this.inputWeight.TextChanged += new System.EventHandler(this.inputWeight_TextChanged);
             // 
             // inputHeight
             // 
-            this.inputHeight.Location = new System.Drawing.Point(94, 190);
+            this.inputHeight.Location = new System.Drawing.Point(80, 163);
             this.inputHeight.Name = "inputHeight";
-            this.inputHeight.Size = new System.Drawing.Size(100, 20);
+            this.inputHeight.Size = new System.Drawing.Size(143, 20);
             this.inputHeight.TabIndex = 22;
             this.inputHeight.TextChanged += new System.EventHandler(this.inputHeight_TextChanged);
-            // 
-            // inputClass
-            // 
-            this.inputClass.Location = new System.Drawing.Point(222, 164);
-            this.inputClass.Name = "inputClass";
-            this.inputClass.Size = new System.Drawing.Size(100, 20);
-            this.inputClass.TabIndex = 21;
             // 
             // inputGender
             // 
@@ -470,14 +483,14 @@
             this.inputGender.Items.AddRange(new object[] {
             "M",
             "K"});
-            this.inputGender.Location = new System.Drawing.Point(86, 137);
+            this.inputGender.Location = new System.Drawing.Point(80, 110);
             this.inputGender.Name = "inputGender";
-            this.inputGender.Size = new System.Drawing.Size(121, 21);
+            this.inputGender.Size = new System.Drawing.Size(143, 21);
             this.inputGender.TabIndex = 20;
             // 
             // inputBirth
             // 
-            this.inputBirth.Location = new System.Drawing.Point(133, 111);
+            this.inputBirth.Location = new System.Drawing.Point(122, 85);
             this.inputBirth.Name = "inputBirth";
             this.inputBirth.Size = new System.Drawing.Size(200, 20);
             this.inputBirth.TabIndex = 19;
@@ -485,166 +498,181 @@
             // 
             // inputPESEL
             // 
-            this.inputPESEL.Location = new System.Drawing.Point(95, 85);
+            this.inputPESEL.Location = new System.Drawing.Point(80, 59);
             this.inputPESEL.Name = "inputPESEL";
-            this.inputPESEL.Size = new System.Drawing.Size(100, 20);
+            this.inputPESEL.Size = new System.Drawing.Size(143, 20);
             this.inputPESEL.TabIndex = 18;
             // 
             // inputLastName
             // 
-            this.inputLastName.Location = new System.Drawing.Point(107, 60);
+            this.inputLastName.Location = new System.Drawing.Point(80, 34);
             this.inputLastName.Name = "inputLastName";
-            this.inputLastName.Size = new System.Drawing.Size(100, 20);
+            this.inputLastName.Size = new System.Drawing.Size(143, 20);
             this.inputLastName.TabIndex = 17;
             // 
             // inputName
             // 
-            this.inputName.Location = new System.Drawing.Point(80, 32);
+            this.inputName.Location = new System.Drawing.Point(80, 10);
             this.inputName.Name = "inputName";
-            this.inputName.Size = new System.Drawing.Size(100, 20);
+            this.inputName.Size = new System.Drawing.Size(143, 20);
             this.inputName.TabIndex = 16;
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(45, 419);
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label16.Location = new System.Drawing.Point(12, 382);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(150, 13);
+            this.label16.Size = new System.Drawing.Size(191, 17);
             this.label16.TabIndex = 15;
             this.label16.Text = "Odbicie światła w rogówkach:";
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(45, 387);
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label15.Location = new System.Drawing.Point(12, 353);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(58, 13);
+            this.label15.Size = new System.Drawing.Size(76, 17);
             this.label15.TabIndex = 14;
             this.label15.Text = "Cover test:";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(45, 356);
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label14.Location = new System.Drawing.Point(12, 325);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(67, 13);
+            this.label14.Size = new System.Drawing.Size(87, 17);
             this.label14.TabIndex = 13;
             this.label14.Text = "Widzi barwy:";
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(45, 328);
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label13.Location = new System.Drawing.Point(12, 298);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(51, 13);
+            this.label13.Size = new System.Drawing.Size(65, 17);
             this.label13.TabIndex = 12;
             this.label13.Text = "Postawa:";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(45, 301);
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label12.Location = new System.Drawing.Point(12, 273);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(41, 13);
+            this.label12.Size = new System.Drawing.Size(52, 17);
             this.label12.TabIndex = 11;
             this.label12.Text = "Wzrok:";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(45, 273);
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label11.Location = new System.Drawing.Point(12, 246);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(52, 13);
+            this.label11.Size = new System.Drawing.Size(69, 17);
             this.label11.TabIndex = 10;
             this.label11.Text = "Ciśnienie:";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(45, 249);
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label10.Location = new System.Drawing.Point(12, 218);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(29, 13);
+            this.label10.Size = new System.Drawing.Size(35, 17);
             this.label10.TabIndex = 9;
             this.label10.Text = "BMI:";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(45, 221);
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label9.Location = new System.Drawing.Point(12, 190);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(39, 13);
+            this.label9.Size = new System.Drawing.Size(49, 17);
             this.label9.TabIndex = 8;
             this.label9.Text = "Waga:";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(45, 193);
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label8.Location = new System.Drawing.Point(12, 164);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(43, 13);
+            this.label8.Size = new System.Drawing.Size(56, 17);
             this.label8.TabIndex = 7;
             this.label8.Text = "Wzrost:";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(45, 167);
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label7.Location = new System.Drawing.Point(12, 137);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(36, 13);
+            this.label7.Size = new System.Drawing.Size(47, 17);
             this.label7.TabIndex = 6;
             this.label7.Text = "Klasa:";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(45, 140);
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label6.Location = new System.Drawing.Point(12, 111);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(40, 13);
+            this.label6.Size = new System.Drawing.Size(48, 17);
             this.label6.TabIndex = 5;
             this.label6.Text = "Płeć: *";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(45, 114);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label5.Location = new System.Drawing.Point(12, 85);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(82, 13);
+            this.label5.Size = new System.Drawing.Size(109, 17);
             this.label5.TabIndex = 4;
             this.label5.Text = "Data urodzenia:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(45, 88);
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label4.Location = new System.Drawing.Point(12, 60);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(51, 13);
+            this.label4.Size = new System.Drawing.Size(65, 17);
             this.label4.TabIndex = 3;
             this.label4.Text = "PESEL: *";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(45, 63);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label3.Location = new System.Drawing.Point(12, 35);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(63, 13);
+            this.label3.Size = new System.Drawing.Size(80, 17);
             this.label3.TabIndex = 2;
             this.label3.Text = "Nazwisko: *";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(45, 35);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.Location = new System.Drawing.Point(12, 11);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(36, 13);
+            this.label2.Size = new System.Drawing.Size(46, 17);
             this.label2.TabIndex = 1;
             this.label2.Text = "Imie: *";
             // 
             // btnASBack
             // 
             this.btnASBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnASBack.Location = new System.Drawing.Point(963, 6);
+            this.btnASBack.Location = new System.Drawing.Point(965, 6);
             this.btnASBack.Name = "btnASBack";
-            this.btnASBack.Size = new System.Drawing.Size(75, 23);
+            this.btnASBack.Size = new System.Drawing.Size(86, 42);
             this.btnASBack.TabIndex = 0;
             this.btnASBack.Text = "Cofnij";
             this.btnASBack.UseVisualStyleBackColor = true;
@@ -665,7 +693,6 @@
             this.panelEditStudent.Controls.Add(this.inputBMIE);
             this.panelEditStudent.Controls.Add(this.inputWeightE);
             this.panelEditStudent.Controls.Add(this.inputHeightE);
-            this.panelEditStudent.Controls.Add(this.inputClassE);
             this.panelEditStudent.Controls.Add(this.inputGenderE);
             this.panelEditStudent.Controls.Add(this.inputClassBE);
             this.panelEditStudent.Controls.Add(this.inputBirthE);
@@ -692,13 +719,14 @@
             this.panelEditStudent.Enabled = false;
             this.panelEditStudent.Location = new System.Drawing.Point(0, 97);
             this.panelEditStudent.Name = "panelEditStudent";
-            this.panelEditStudent.Size = new System.Drawing.Size(1050, 553);
+            this.panelEditStudent.Size = new System.Drawing.Size(1063, 625);
             this.panelEditStudent.TabIndex = 5;
             this.panelEditStudent.Visible = false;
             // 
             // btnConfirmEditStudent
             // 
-            this.btnConfirmEditStudent.Location = new System.Drawing.Point(449, 353);
+            this.btnConfirmEditStudent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnConfirmEditStudent.Location = new System.Drawing.Point(905, 537);
             this.btnConfirmEditStudent.Name = "btnConfirmEditStudent";
             this.btnConfirmEditStudent.Size = new System.Drawing.Size(146, 76);
             this.btnConfirmEditStudent.TabIndex = 32;
@@ -710,92 +738,85 @@
             // 
             this.inputLightReflectE.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.inputLightReflectE.FormattingEnabled = true;
-            this.inputLightReflectE.Location = new System.Drawing.Point(201, 416);
+            this.inputLightReflectE.Location = new System.Drawing.Point(206, 369);
             this.inputLightReflectE.Name = "inputLightReflectE";
-            this.inputLightReflectE.Size = new System.Drawing.Size(121, 21);
+            this.inputLightReflectE.Size = new System.Drawing.Size(143, 21);
             this.inputLightReflectE.TabIndex = 31;
             // 
             // inputCoverTestE
             // 
             this.inputCoverTestE.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.inputCoverTestE.FormattingEnabled = true;
-            this.inputCoverTestE.Location = new System.Drawing.Point(105, 384);
+            this.inputCoverTestE.Location = new System.Drawing.Point(94, 341);
             this.inputCoverTestE.Name = "inputCoverTestE";
-            this.inputCoverTestE.Size = new System.Drawing.Size(121, 21);
+            this.inputCoverTestE.Size = new System.Drawing.Size(143, 21);
             this.inputCoverTestE.TabIndex = 30;
             // 
             // inputSeesColourE
             // 
             this.inputSeesColourE.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.inputSeesColourE.FormattingEnabled = true;
-            this.inputSeesColourE.Location = new System.Drawing.Point(118, 353);
+            this.inputSeesColourE.Location = new System.Drawing.Point(94, 314);
             this.inputSeesColourE.Name = "inputSeesColourE";
-            this.inputSeesColourE.Size = new System.Drawing.Size(121, 21);
+            this.inputSeesColourE.Size = new System.Drawing.Size(143, 21);
             this.inputSeesColourE.TabIndex = 29;
             // 
             // inputPostureTypeE
             // 
             this.inputPostureTypeE.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.inputPostureTypeE.FormattingEnabled = true;
-            this.inputPostureTypeE.Location = new System.Drawing.Point(229, 325);
+            this.inputPostureTypeE.Location = new System.Drawing.Point(243, 289);
             this.inputPostureTypeE.Name = "inputPostureTypeE";
-            this.inputPostureTypeE.Size = new System.Drawing.Size(121, 21);
+            this.inputPostureTypeE.Size = new System.Drawing.Size(143, 21);
             this.inputPostureTypeE.TabIndex = 28;
             // 
             // inputPostureE
             // 
             this.inputPostureE.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.inputPostureE.FormattingEnabled = true;
-            this.inputPostureE.Location = new System.Drawing.Point(102, 325);
+            this.inputPostureE.Location = new System.Drawing.Point(94, 289);
             this.inputPostureE.Name = "inputPostureE";
-            this.inputPostureE.Size = new System.Drawing.Size(121, 21);
+            this.inputPostureE.Size = new System.Drawing.Size(143, 21);
             this.inputPostureE.TabIndex = 27;
             // 
             // inputEyeE
             // 
             this.inputEyeE.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.inputEyeE.FormattingEnabled = true;
-            this.inputEyeE.Location = new System.Drawing.Point(86, 298);
+            this.inputEyeE.Location = new System.Drawing.Point(94, 262);
             this.inputEyeE.Name = "inputEyeE";
-            this.inputEyeE.Size = new System.Drawing.Size(121, 21);
+            this.inputEyeE.Size = new System.Drawing.Size(143, 21);
             this.inputEyeE.TabIndex = 26;
             // 
             // inputPressureE
             // 
-            this.inputPressureE.Location = new System.Drawing.Point(103, 270);
+            this.inputPressureE.Location = new System.Drawing.Point(94, 234);
             this.inputPressureE.Name = "inputPressureE";
-            this.inputPressureE.Size = new System.Drawing.Size(100, 20);
+            this.inputPressureE.Size = new System.Drawing.Size(143, 20);
             this.inputPressureE.TabIndex = 25;
             // 
             // inputBMIE
             // 
-            this.inputBMIE.Location = new System.Drawing.Point(80, 246);
+            this.inputBMIE.Location = new System.Drawing.Point(94, 206);
             this.inputBMIE.Name = "inputBMIE";
-            this.inputBMIE.Size = new System.Drawing.Size(100, 20);
+            this.inputBMIE.Size = new System.Drawing.Size(143, 20);
             this.inputBMIE.TabIndex = 24;
             // 
             // inputWeightE
             // 
-            this.inputWeightE.Location = new System.Drawing.Point(90, 218);
+            this.inputWeightE.Location = new System.Drawing.Point(94, 180);
             this.inputWeightE.Name = "inputWeightE";
-            this.inputWeightE.Size = new System.Drawing.Size(100, 20);
+            this.inputWeightE.Size = new System.Drawing.Size(143, 20);
             this.inputWeightE.TabIndex = 23;
             this.inputWeightE.TextChanged += new System.EventHandler(this.inputWeightE_TextChanged);
             // 
             // inputHeightE
             // 
-            this.inputHeightE.Location = new System.Drawing.Point(94, 190);
+            this.inputHeightE.Location = new System.Drawing.Point(94, 153);
             this.inputHeightE.Name = "inputHeightE";
-            this.inputHeightE.Size = new System.Drawing.Size(100, 20);
+            this.inputHeightE.Size = new System.Drawing.Size(143, 20);
             this.inputHeightE.TabIndex = 22;
             this.inputHeightE.TextChanged += new System.EventHandler(this.inputHeightE_TextChanged);
-            // 
-            // inputClassE
-            // 
-            this.inputClassE.Location = new System.Drawing.Point(222, 164);
-            this.inputClassE.Name = "inputClassE";
-            this.inputClassE.Size = new System.Drawing.Size(100, 20);
-            this.inputClassE.TabIndex = 21;
             // 
             // inputGenderE
             // 
@@ -804,215 +825,222 @@
             this.inputGenderE.Items.AddRange(new object[] {
             "M",
             "K"});
-            this.inputGenderE.Location = new System.Drawing.Point(86, 137);
+            this.inputGenderE.Location = new System.Drawing.Point(94, 101);
             this.inputGenderE.Name = "inputGenderE";
-            this.inputGenderE.Size = new System.Drawing.Size(121, 21);
+            this.inputGenderE.Size = new System.Drawing.Size(143, 21);
             this.inputGenderE.TabIndex = 20;
             // 
             // inputClassBE
             // 
             this.inputClassBE.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.inputClassBE.FormattingEnabled = true;
-            this.inputClassBE.Location = new System.Drawing.Point(86, 164);
+            this.inputClassBE.Location = new System.Drawing.Point(94, 127);
             this.inputClassBE.Name = "inputClassBE";
-            this.inputClassBE.Size = new System.Drawing.Size(121, 21);
+            this.inputClassBE.Size = new System.Drawing.Size(143, 21);
             this.inputClassBE.TabIndex = 33;
             // 
             // inputBirthE
             // 
-            this.inputBirthE.Location = new System.Drawing.Point(133, 111);
+            this.inputBirthE.Location = new System.Drawing.Point(118, 77);
             this.inputBirthE.Name = "inputBirthE";
             this.inputBirthE.Size = new System.Drawing.Size(200, 20);
             this.inputBirthE.TabIndex = 19;
             // 
             // inputPESELE
             // 
-            this.inputPESELE.Location = new System.Drawing.Point(95, 85);
+            this.inputPESELE.Location = new System.Drawing.Point(94, 54);
             this.inputPESELE.Name = "inputPESELE";
-            this.inputPESELE.Size = new System.Drawing.Size(100, 20);
+            this.inputPESELE.Size = new System.Drawing.Size(143, 20);
             this.inputPESELE.TabIndex = 18;
             // 
             // inputLastNameE
             // 
-            this.inputLastNameE.Location = new System.Drawing.Point(107, 60);
+            this.inputLastNameE.Location = new System.Drawing.Point(94, 32);
             this.inputLastNameE.Name = "inputLastNameE";
-            this.inputLastNameE.Size = new System.Drawing.Size(100, 20);
+            this.inputLastNameE.Size = new System.Drawing.Size(143, 20);
             this.inputLastNameE.TabIndex = 17;
             // 
             // inputNameE
             // 
-            this.inputNameE.Location = new System.Drawing.Point(80, 32);
+            this.inputNameE.Location = new System.Drawing.Point(94, 9);
             this.inputNameE.Name = "inputNameE";
-            this.inputNameE.Size = new System.Drawing.Size(100, 20);
+            this.inputNameE.Size = new System.Drawing.Size(143, 20);
             this.inputNameE.TabIndex = 16;
             // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(45, 419);
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label17.Location = new System.Drawing.Point(9, 370);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(150, 13);
+            this.label17.Size = new System.Drawing.Size(191, 17);
             this.label17.TabIndex = 15;
             this.label17.Text = "Odbicie światła w rogówkach:";
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(45, 387);
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label18.Location = new System.Drawing.Point(9, 342);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(58, 13);
+            this.label18.Size = new System.Drawing.Size(76, 17);
             this.label18.TabIndex = 14;
             this.label18.Text = "Cover test:";
             // 
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(45, 356);
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label19.Location = new System.Drawing.Point(9, 315);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(67, 13);
+            this.label19.Size = new System.Drawing.Size(87, 17);
             this.label19.TabIndex = 13;
             this.label19.Text = "Widzi barwy:";
             // 
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(45, 328);
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label20.Location = new System.Drawing.Point(9, 290);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(51, 13);
+            this.label20.Size = new System.Drawing.Size(65, 17);
             this.label20.TabIndex = 12;
             this.label20.Text = "Postawa:";
             // 
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(45, 301);
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label21.Location = new System.Drawing.Point(9, 263);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(41, 13);
+            this.label21.Size = new System.Drawing.Size(52, 17);
             this.label21.TabIndex = 11;
             this.label21.Text = "Wzrok:";
             // 
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(45, 273);
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label22.Location = new System.Drawing.Point(9, 235);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(52, 13);
+            this.label22.Size = new System.Drawing.Size(69, 17);
             this.label22.TabIndex = 10;
             this.label22.Text = "Ciśnienie:";
             // 
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(45, 249);
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label23.Location = new System.Drawing.Point(9, 207);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(29, 13);
+            this.label23.Size = new System.Drawing.Size(35, 17);
             this.label23.TabIndex = 9;
             this.label23.Text = "BMI:";
             // 
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(45, 221);
+            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label24.Location = new System.Drawing.Point(9, 181);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(39, 13);
+            this.label24.Size = new System.Drawing.Size(49, 17);
             this.label24.TabIndex = 8;
             this.label24.Text = "Waga:";
             // 
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(45, 193);
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label25.Location = new System.Drawing.Point(9, 154);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(43, 13);
+            this.label25.Size = new System.Drawing.Size(56, 17);
             this.label25.TabIndex = 7;
             this.label25.Text = "Wzrost:";
             // 
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(45, 167);
+            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label26.Location = new System.Drawing.Point(9, 128);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(36, 13);
+            this.label26.Size = new System.Drawing.Size(47, 17);
             this.label26.TabIndex = 6;
             this.label26.Text = "Klasa:";
             // 
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(45, 140);
+            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label27.Location = new System.Drawing.Point(9, 102);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(40, 13);
+            this.label27.Size = new System.Drawing.Size(48, 17);
             this.label27.TabIndex = 5;
             this.label27.Text = "Płeć: *";
             // 
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(45, 114);
+            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label28.Location = new System.Drawing.Point(9, 77);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(82, 13);
+            this.label28.Size = new System.Drawing.Size(109, 17);
             this.label28.TabIndex = 4;
             this.label28.Text = "Data urodzenia:";
             // 
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(45, 88);
+            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label29.Location = new System.Drawing.Point(9, 55);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(51, 13);
+            this.label29.Size = new System.Drawing.Size(65, 17);
             this.label29.TabIndex = 3;
             this.label29.Text = "PESEL: *";
             // 
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(45, 63);
+            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label30.Location = new System.Drawing.Point(9, 31);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(63, 13);
+            this.label30.Size = new System.Drawing.Size(80, 17);
             this.label30.TabIndex = 2;
             this.label30.Text = "Nazwisko: *";
             // 
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(45, 35);
+            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label31.Location = new System.Drawing.Point(9, 9);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(36, 13);
+            this.label31.Size = new System.Drawing.Size(46, 17);
             this.label31.TabIndex = 1;
             this.label31.Text = "Imie: *";
             // 
             // btnESBack
             // 
             this.btnESBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnESBack.Location = new System.Drawing.Point(963, 6);
+            this.btnESBack.Location = new System.Drawing.Point(965, 6);
             this.btnESBack.Name = "btnESBack";
-            this.btnESBack.Size = new System.Drawing.Size(75, 23);
+            this.btnESBack.Size = new System.Drawing.Size(86, 42);
             this.btnESBack.TabIndex = 0;
             this.btnESBack.Text = "Cofnij";
             this.btnESBack.UseVisualStyleBackColor = true;
             this.btnESBack.Click += new System.EventHandler(this.btnESBack_Click);
             // 
-            // inputClassB
-            // 
-            this.inputClassB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.inputClassB.FormattingEnabled = true;
-            this.inputClassB.Location = new System.Drawing.Point(87, 164);
-            this.inputClassB.Name = "inputClassB";
-            this.inputClassB.Size = new System.Drawing.Size(121, 21);
-            this.inputClassB.TabIndex = 34;
-            // 
             // FormStudents
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1050, 650);
-            this.Controls.Add(this.panelAddStudent);
+            this.ClientSize = new System.Drawing.Size(1063, 722);
             this.Controls.Add(this.panelEditStudent);
+            this.Controls.Add(this.panelAddStudent);
             this.Controls.Add(this.panelDataGrid);
             this.Controls.Add(this.panelNav);
             this.Name = "FormStudents";
             this.Text = "FormStudents";
             this.Load += new System.EventHandler(this.FormStudents_Load);
+            this.Shown += new System.EventHandler(this.FormStudents_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewStudents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kidsDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kidsDataSetBindingSource)).EndInit();
@@ -1073,7 +1101,6 @@
         private System.Windows.Forms.TextBox inputBMI;
         private System.Windows.Forms.TextBox inputWeight;
         private System.Windows.Forms.TextBox inputHeight;
-        private System.Windows.Forms.TextBox inputClass;
         private System.Windows.Forms.ComboBox inputGender;
         private System.Windows.Forms.DateTimePicker inputBirth;
         private System.Windows.Forms.TextBox inputPESEL;
@@ -1090,7 +1117,6 @@
         private System.Windows.Forms.TextBox inputBMIE;
         private System.Windows.Forms.TextBox inputWeightE;
         private System.Windows.Forms.TextBox inputHeightE;
-        private System.Windows.Forms.TextBox inputClassE;
         private System.Windows.Forms.ComboBox inputGenderE;
         private System.Windows.Forms.DateTimePicker inputBirthE;
         private System.Windows.Forms.TextBox inputPESELE;
@@ -1118,5 +1144,6 @@
         private System.Windows.Forms.DataGridViewButtonColumn delete;
         private System.Windows.Forms.ComboBox inputClassBE;
         private System.Windows.Forms.ComboBox inputClassB;
+        private System.Windows.Forms.ComboBox comboArchive;
     }
 }
