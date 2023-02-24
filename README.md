@@ -1,6 +1,6 @@
 # StudentDBMS
 
-StudentDBMS is a desktop application written in C# using Visual Studio. It is designed to help you manage a database of students and their medical records. With StudentDBMS, you can add new students and classes to the database, manage the database, do backups, restore from backups and create Excel spreadsheets from a template.
+Student Database Management System is a desktop application written in C# using Visual Studio. It is designed to help you manage a database of students and their medical records. With StudentDBMS, you can add new students and classes to the database, manage the database, do backups, restore from backups and create Excel spreadsheets from a template.
 
 ## Features
 
