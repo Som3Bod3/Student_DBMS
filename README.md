@@ -18,3 +18,4 @@ StudentDBMS is a desktop application written in C# using Visual Studio. It is de
 - SQL Server
 - .NET Core
 
+![Project view](https://github.com/Som3Bod3/Student_DBMS/blob/master/Capture.JPG)
